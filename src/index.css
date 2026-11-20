@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #7045C6;
+  --color-primary-light: #8B5CF6;
+  --color-secondary: #A78BFA;
+  --color-accent: #E879F9;
+  --color-accent-soft: #FDF2F8;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+
+  --color-light-primary: #7045C6;
+  --color-light-on-primary: #FFFFFF;
+  --color-light-primary-container: #EDE9FE;
+  --color-light-on-primary-container: #4C1D95;
+  --color-light-surface: #F8F7FC;
+  --color-light-on-surface: #1F1D2B;
+  --color-light-surface-card: #FFFFFF;
+  --color-light-on-surface-card: #1F1D2B;
+  --color-light-surface-card-subtle: #F3F0FA;
+  --color-light-outline: #E2DCF0;
+  --color-light-outline-subtle: #EDE8F5;
+  --color-light-text-muted: #6B7280;
+
+  --color-dark-primary: #A78BFA;
+  --color-dark-on-primary: #171522;
+  --color-dark-primary-container: #2D2644;
+  --color-dark-on-primary-container: #DDD6FE;
+  --color-dark-surface: #171522;
+  --color-dark-on-surface: #F3F0FA;
+  --color-dark-surface-card: #262333;
+  --color-dark-on-surface-card: #F3F0FA;
+  --color-dark-surface-card-subtle: #1F1D2B;
+  --color-dark-outline: #3A354D;
+  --color-dark-outline-subtle: #2A2739;
+  --color-dark-text-muted: #9CA3AF;
+
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-headline: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.14);
+    opacity: 0.28;
+  }
+  100% {
+    transform: scale(0.92);
+    opacity: 0.65;
+  }
+}
+
+@keyframes float-subtle {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes wave-bounce {
+  0%,
+  100% {
+    transform: scaleY(0.45);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-float {
+  animation: float-subtle 3.5s ease-in-out infinite;
+}
+
+.animate-wave-bar {
+  animation: wave-bounce 0.9s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-ring,
+  .animate-float,
+  .animate-wave-bar {
+    animation: none !important;
+  }
+}

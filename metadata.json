@@ -1,0 +1,6 @@
+{
+  "name": "XPRESSIT",
+  "description": "Anonymous social experience-sharing platform for confessions, personal stories, and voice notes.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -4,6 +4,7 @@ import { CreatePostScreen } from './components/CreatePostScreen';
 import { HomeFeedScreen } from './components/HomeFeedScreen';
 import { NavigationShell } from './components/NavigationShell';
 import { OnboardingScreen } from './components/OnboardingScreen';
+import { OfflineIndicator, PWAVisitPrompt } from './components/PWAInstallPrompt';
 import { SettingsScreen } from './components/SettingsScreen';
 import { SplashScreen } from './components/SplashScreen';
 import { DEFAULT_API_META } from './data/seedPosts';
@@ -359,43 +360,58 @@ export default function App() {
 
   if (route === 'splash') {
     return (
-      <SplashScreen
-        existingSession={session}
-        meta={meta}
-        onEnter={() =>
-          setRoute(isConfirmed ? 'feed' : session ? 'auth' : 'onboarding')
-        }
-        onReplayOnboarding={() => setRoute('onboarding')}
-        onToggleTheme={toggleQuickTheme}
-      />
+      <>
+        <PWAVisitPrompt />
+        <OfflineIndicator />
+        <SplashScreen
+          existingSession={session}
+          meta={meta}
+          onEnter={() =>
+            setRoute(isConfirmed ? 'feed' : session ? 'auth' : 'onboarding')
+          }
+          onReplayOnboarding={() => setRoute('onboarding')}
+          onToggleTheme={toggleQuickTheme}
+        />
+      </>
     );
   }
 
   if (route === 'onboarding') {
     return (
-      <OnboardingScreen
-        onSkip={() => setRoute(isConfirmed ? 'feed' : 'auth')}
-        onComplete={() => setRoute(isConfirmed ? 'feed' : 'auth')}
-        onToggleTheme={toggleQuickTheme}
-      />
+      <>
+        <PWAVisitPrompt />
+        <OfflineIndicator />
+        <OnboardingScreen
+          onSkip={() => setRoute(isConfirmed ? 'feed' : 'auth')}
+          onComplete={() => setRoute(isConfirmed ? 'feed' : 'auth')}
+          onToggleTheme={toggleQuickTheme}
+        />
+      </>
     );
   }
 
   if (route === 'auth' || !session || !session.user.confirmed) {
     return (
-      <AuthScreen
-        pendingSession={session && !session.user.confirmed ? session : null}
-        savedHandleHint={savedHandleHint}
-        onPendingCreated={handlePendingCreated}
-        onAuthenticated={handleAuthenticated}
-        onBack={() => setRoute('onboarding')}
-        onToggleTheme={toggleQuickTheme}
-      />
+      <>
+        <PWAVisitPrompt />
+        <OfflineIndicator />
+        <AuthScreen
+          pendingSession={session && !session.user.confirmed ? session : null}
+          savedHandleHint={savedHandleHint}
+          onPendingCreated={handlePendingCreated}
+          onAuthenticated={handleAuthenticated}
+          onBack={() => setRoute('onboarding')}
+          onToggleTheme={toggleQuickTheme}
+        />
+      </>
     );
   }
 
   return (
-    <NavigationShell
+    <>
+      <PWAVisitPrompt />
+      <OfflineIndicator />
+      <NavigationShell
       activeRoute={route}
       onNavigate={(next) => setRoute(next)}
       session={session}
@@ -521,5 +537,6 @@ export default function App() {
         />
       )}
     </NavigationShell>
+    </>
   );
 }

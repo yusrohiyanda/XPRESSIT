@@ -8,6 +8,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { ScreenRoute, UserSession } from '../types/xpressit';
+import { PWAInstallButton } from './PWAInstallPrompt';
 
 interface NavigationShellProps {
   activeRoute: Extract<ScreenRoute, 'feed' | 'create' | 'settings'>;
@@ -168,6 +169,8 @@ export function NavigationShell({
               </button>
             )}
           </div>
+
+          <PWAInstallButton fullWidth />
         </aside>
       </div>
 

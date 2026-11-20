@@ -24,6 +24,7 @@ import {
   X,
 } from 'lucide-react';
 import { CATEGORY_LABELS, REPORT_REASONS, formatRelativeTime } from '../data/seedPosts';
+import { PWAInstallButton } from './PWAInstallPrompt';
 import {
   ApiError,
   confirmPassphraseChange,
@@ -566,6 +567,10 @@ export function SettingsScreen({
               <span>About {meta.name}</span>
               <ChevronRight className="w-4 h-4" />
             </button>
+          </div>
+
+          <div className="mt-3 pt-3 border-t border-light-outline-subtle dark:border-dark-outline-subtle">
+            <PWAInstallButton fullWidth />
           </div>
         </section>
 
